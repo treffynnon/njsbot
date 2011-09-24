@@ -1,9 +1,11 @@
+// npm install request node-xmpp express nodester-api
+
 const config = require('./config.js').settings;
 var node = require('nodester-api').nodester
 var app = require('express').createServer();
 
 app.get('/', function(req, res){
-  res.send('hello world');
+  res.send('Add n.js.bot@gmail.com to your contacts to talk with the bot.');
 });
 
 app.get('/setup-bot/:cu/:cp/:password', function(req, res) {
@@ -149,10 +151,12 @@ function execute_bot() {
         } else if(stanza.is('message')) {
 	        var request = split_request(stanza);
 	        if(request) {
-	        if(!execute_command(request)) {
-	            send_unknown_command_message(request);
-	        }
-	    }
+	            if(!execute_command(request)) {
+	                send_unknown_command_message(request);
+	            }
+	        } else {
+                send_help_information(stanza.attrs.from);
+            }
         }
     }
 
