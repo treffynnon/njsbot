@@ -1,13 +1,24 @@
 const config = require('./config.js').settings;
+var node = require('nodester-api').nodester
 var app = require('express').createServer();
 
 app.get('/', function(req, res){
   res.send('hello world');
 });
 
-app.get('/login/:password', function(req, res) {
-  config.client.password = req.params.password;
-  execute_bot();
+app.get('/setup-bot/:cu/:cp/:password', function(req, res) {
+  var message_body = '';
+  var nodeapi = new node(cu, cp, 'api.cloudno.de', true);
+  nodeapi.app_info('njsbot', function (err, data, original) {
+    if(!err) {
+      config.client.password = req.params.password;
+      execute_bot();
+      message_body = 'Bot password updated.';
+    } else {
+      message_body = 'Authentication failure.';
+    }
+    res.send(message_body);
+  });
 });
 
 app.listen(3000);
