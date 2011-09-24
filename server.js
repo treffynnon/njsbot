@@ -217,6 +217,6 @@ conn.on('online', function() {
     set_status_message(config.status_message);
 });
 
-conn.on('error', function(e) {
+conn.on('error', function(stanza) {
     util.log('[error] ' + stanza.toString());
 });
