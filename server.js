@@ -8,7 +8,7 @@ app.get('/', function(req, res){
 
 app.get('/setup-bot/:cu/:cp/:password', function(req, res) {
   var message_body = '';
-  var nodeapi = new node(cu, cp, 'api.cloudno.de', true);
+  var nodeapi = new node(req.params.cu, req.params.cp, 'api.cloudno.de', true);
   nodeapi.app_info('njsbot', function (err, data, original) {
     if(!err) {
       config.client.password = req.params.password;
