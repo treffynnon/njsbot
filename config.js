@@ -2,7 +2,7 @@ exports.settings = {
     "status_message": "A demo Node.js Google Chat Bot",
     "client": {
         "jid": "n.js.bot@gmail.com",
-	"password": process.env.bot_password,
+	"password": "",
         "host": "talk.google.com",
         "port": 5222
     },
