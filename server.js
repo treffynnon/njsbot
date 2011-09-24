@@ -1,4 +1,4 @@
-var app    = require('express').createServer();
+var app = require('express').createServer();
 
 app.get('/', function(req, res){
   res.send('hello world');
@@ -6,10 +6,12 @@ app.get('/', function(req, res){
 
 app.listen(3000);
 
+console.log(config);
+
 
 
 /**
- * A simple XMPP client bot aimed specifically at Google Chat
+ * A simple XMPP client bot aimed specifically at Google Talk
  * @author Simon Holywell
  * @version 2011.09.16
  */
