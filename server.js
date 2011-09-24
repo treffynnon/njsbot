@@ -16,7 +16,7 @@ const xmpp = require('node-xmpp');
 const util = require('util');
 const request_helper = require('request');
 
-console.log(config);
+console.log(process.env);
 
 const conn = new xmpp.Client(config.client);
 conn.socket.setTimeout(0);
