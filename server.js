@@ -6,10 +6,6 @@ app.get('/', function(req, res){
 
 app.listen(3000);
 
-console.log(config);
-
-
-
 /**
  * A simple XMPP client bot aimed specifically at Google Talk
  * @author Simon Holywell
@@ -19,6 +15,8 @@ const config = require('./config.js').settings;
 const xmpp = require('node-xmpp');
 const util = require('util');
 const request_helper = require('request');
+
+console.log(config);
 
 const conn = new xmpp.Client(config.client);
 conn.socket.setTimeout(0);
