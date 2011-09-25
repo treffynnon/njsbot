@@ -48,7 +48,7 @@ function execute_bot() {
      */
     function request_google_roster() {
         var roster_elem = new xmpp.Element('iq', { from: conn.jid, type: 'get', id: 'google-roster'})
-	                    .c('query', { xmlns: 'jabber:iq:roster', 'xmlns:gr': 'google:roster', 'gr:ext': '2' });
+                        .c('query', { xmlns: 'jabber:iq:roster', 'xmlns:gr': 'google:roster', 'gr:ext': '2' });
         conn.send(roster_elem);
     }
 
@@ -59,11 +59,12 @@ function execute_bot() {
     function accept_subscription_requests(stanza) {
         if(stanza.is('presence') 
            && stanza.attrs.type === 'subscribe') {
-	    var subscribe_elem = new xmpp.Element('presence', {
-	        to: stanza.attrs.from,
-	        type: 'subscribed'
-	    });
-	    conn.send(subscribe_elem);
+            var subscribe_elem = new xmpp.Element('presence', {
+                to: stanza.attrs.from,
+                type: 'subscribed'
+            });
+            conn.send(subscribe_elem);
+            send_help_information(stanza.attrs.from);
         }
     }
 
@@ -73,8 +74,8 @@ function execute_bot() {
      */
     function set_status_message(status_message) {
         var presence_elem = new xmpp.Element('presence', { })
-	                            .c('show').t('chat').up()
-	                            .c('status').t(status_message);
+                                .c('show').t('chat').up()
+                                .c('status').t(status_message);
         conn.send(presence_elem);
     }
 
@@ -84,7 +85,7 @@ function execute_bot() {
      */
     function send_xmpp_ping() {
         var elem = new xmpp.Element('iq', { from: conn.jid, type: 'get', id: 'c2s1' })
-	             .c('ping', { 'xmlns': 'urn:xmpp:ping' });
+                 .c('ping', { 'xmlns': 'urn:xmpp:ping' });
         conn.send(elem);
     }
 
@@ -95,7 +96,7 @@ function execute_bot() {
      */
     function send_message(to_jid, message_body) {
         var elem = new xmpp.Element('message', { to: to_jid, type: 'chat' })
-	             .c('body').t(message_body);
+                 .c('body').t(message_body);
         conn.send(elem);
         util.log('[message] SENT: ' + elem.up().toString());
     }
@@ -128,15 +129,15 @@ function execute_bot() {
     function split_request(stanza) {
         var message_body = stanza.getChildText('body');
         if(null !== message_body) {
-	    message_body = message_body.split(config.command_argument_separator);
-	    var command = message_body[0].trim().toLowerCase();
-	    if('help' === command || '?' == command) {
-	        send_help_information(stanza.attrs.from);
-	    } else if(typeof message_body[1] !== "undefined") {
-	        return { "command" : command,
-	                 "argument": message_body[1].trim(),
-	                 "stanza"  : stanza };
-	    }
+            message_body = message_body.split(config.command_argument_separator);
+            var command = message_body[0].trim().toLowerCase();
+            if(typeof message_body[1] !== "undefined") {
+                return { "command" : command,
+                         "argument": message_body[1].trim(),
+                         "stanza"  : stanza };
+            } else {
+                send_help_information(stanza.attrs.from);
+            }
         }
         return false;
     }
@@ -147,15 +148,13 @@ function execute_bot() {
      */
     function message_dispatcher(stanza) {
         if('error' === stanza.attrs.type) {
-	    util.log('[error] ' + stanza.toString());
+            util.log('[error] ' + stanza.toString());
         } else if(stanza.is('message')) {
-	        var request = split_request(stanza);
-	        if(request) {
-	            if(!execute_command(request)) {
-	                send_unknown_command_message(request);
-	            }
-	        } else {
-                send_help_information(stanza.attrs.from);
+            var request = split_request(stanza);
+            if(request) {
+                if(!execute_command(request)) {
+                    send_unknown_command_message(request);
+                }
             }
         }
     }
@@ -175,7 +174,7 @@ function execute_bot() {
      */
     function execute_command(request) {
         if(typeof commands[request.command] === "function") {
-	    return commands[request.command](request);
+            return commands[request.command](request);
         }
         return false;
     }
@@ -197,20 +196,20 @@ function execute_bot() {
         var to_jid = request.stanza.attrs.from;
         send_message(to_jid, 'Searching twitter, please be patient...');
         var url = 'http://search.twitter.com/search.json?rpp=5&show_user=true&lang=en&q='
-	         + encodeURIComponent(request.argument);
+                + encodeURIComponent(request.argument);
         request_helper(url, function(error, response, body){
-	    if (!error && response.statusCode == 200) {
-	        var body = JSON.parse(body);
-	        if(body.results.length) {
-	            for(var i in body.results) {
-	                send_message(to_jid, body.results[i].text);
-	            }
-	        } else {
-	            send_message(to_jid, 'There are no results for your query. Please try again.');
-	        }
-	    } else {
-	        send_message(to_jid, 'Twitter was unable to provide a satisfactory response. Please try again.');
-	    }
+            if (!error && response.statusCode == 200) {
+                var body = JSON.parse(body);
+                if(body.results.length) {
+                    for(var i in body.results) {
+                        send_message(to_jid, body.results[i].text);
+                    }
+                } else {
+                    send_message(to_jid, 'There are no results for your query. Please try again.');
+                }
+            } else {
+                send_message(to_jid, 'Twitter was unable to provide a satisfactory response. Please try again.');
+            }
         });
         return true;
     });
