@@ -128,7 +128,8 @@ function execute_bot() {
         var message_body = "Currently 'bounce', 'status' and 'twitter' are supported:\n";
         message_body += "b;example text\n";
         message_body += "t;some search string\n";
-        message_body += "s;A new status message\n";
+        message_body += "s;A new status message\n\n";
+        message_body += "See http://njsbot.simonholywell.com/ for more information.\n";
         send_message(to_jid, message_body);
     }
 
