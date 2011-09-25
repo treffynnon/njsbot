@@ -219,7 +219,9 @@ function execute_bot() {
      * @param {Object} request
      */
     add_command('s', function(request) {
-        set_status_message(request.argument);
+        //set_status_message(request.argument);
+        send_message(request.stanza.attrs.from, "Status message now set to " + request.argument);
+        send_message(request.stanza.attrs.from, "This feature has been disabled on this public bot due to abuse. Sorry");
         return true;
     });
 
