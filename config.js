@@ -1,5 +1,5 @@
 exports.settings = {
-    "status_message": "A demo Node.js Google Chat Bot",
+    "status_message": "A demo Node.js Google Talk Bot",
     "client": {
         "jid": "n.js.bot@gmail.com",
 	"password": "",

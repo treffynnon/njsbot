@@ -11,4 +11,4 @@ You need a nodester based hosting account such as [cloudno.de](http://cloudno.de
 
 To set the bot's password you will need to hit the following URL on your app after it has restarted.
 
-	http://njsbot.cloudno.de/setup-bot/<hosting service username>/<hosting service password>/<Google Account Password>
+	http://appname.cloudno.de/setup-bot/<hosting service username>/<hosting service password>/<Google Account Password>
