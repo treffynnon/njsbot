@@ -1,11 +1,21 @@
 // npm install request node-xmpp express nodester-api
 
 const config = require('./config.js').settings;
-var node = require('nodester-api').nodester
-var app = require('express').createServer();
+var node = require('nodester-api').nodester;
+var express = require('express');
+var app = express.createServer();
+app.configure(function(){
+  app.set('view engine', 'jade');
+  app.set('views', __dirname + '/views');
+  app.use("/css", express.static(__dirname + '/css'));
+});
 
 app.get('/', function(req, res){
-  res.send('Add n.js.bot@gmail.com to your contacts to talk with the bot.');
+  var data = {
+    title: config.status_message,
+    bot_email: config.client.jid
+  };
+  res.render('index.jade', data);
 });
 
 app.get('/setup-bot/:cu/:cp/:password', function(req, res) {

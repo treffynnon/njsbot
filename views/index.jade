@@ -1,0 +1,51 @@
+h1 #{title}
+    span by 
+        a(href='http://www.simonholywell.com', title='Simon Holywell') Simon Holywell
+h2 Try the demo
+p Add #{bot_email} to your contacts to talk with the bot.
+h2 Documentation
+ul#documentation-index
+    li
+        a(href='#command-bounce', title='Bounce command documentation') Bounce (b;)
+    li
+        a(href='#command-status', title='Status command documentation') Status (s;)
+    li
+        a(href='#command-twitter', title='Twitter command documentation') Twitter (t;)
+div.command
+    h3#command-bounce Bounce (b;)
+    p This command causes the bot to echo back whatever you send it.
+    h4 Example
+    h5 Request
+    blockquote b;Hello my new bot friend!
+    h5 Response
+    blockquote b;Hello my new bot friend!
+div.command
+    h3#command-status Status (s;)
+    p Allows you to update the bot's own instant messenger status
+    h4 Example
+    h5 Request
+    blockquote s;This is the bot's new status!
+    h5 Response
+    p The bot's status message will be updated as well as issuing the following response.
+    blockquote Status message now set to This is the bot's new status!
+div.command
+    h3#command-twitter Twitter (t;)
+    p Used to search Twitter for the supplied term. For Twitter search options please see 
+        a(href='https://dev.twitter.com/docs/using-search', title='Using the Twitter Search API') Using the Twitter Search API
+    h4 Example
+    h5 Request
+    blockquote t;Rugby World Cup
+    h5 Response
+    p This command will return a status message and upto 5 results from the Twitter search API
+    h6 Message 1
+    blockquote Searching twitter, please be patient...
+    h6 Message 2
+    blockquote TiffannyJunee: @russiarugby doing it their way @ #RWC2011 See you in Nelson! :-) http://t.co/v0toiij5
+    h6 Message 3
+    blockquote MotatauMarae: All Blacks thump France in Rugby World Cup; US preps for Italy clash: The All Blacks were simply unstoppabl... http://t.co/itlnTBWC (LT)
+    h6 Message 4
+    blockquote SportSquareNews: Rugby World Cup 2011: Ireland victory pleases Kidney http://t.co/WME2ZaAA
+    h6 Message 5
+    blockquote Bettor_rugby: World Cup preview: Namibia v Wales, Bettor.com http://t.co/5yTdXzXs
+    h6 Message 6
+    blockquote PierreOlivierD: Marc Lièvremont defends decision to pick Morgan Parra at fly-half http://t.co/8jJLT5mH via @guardian
