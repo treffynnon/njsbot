@@ -8,7 +8,10 @@ Dependencies
 ------------------
 You need a nodester based hosting account such as [cloudno.de](http://cloudno.de "cloudno.de") and the following Node packages:
 
-	npm install node-xmpp request express jade nodester-api
+	npm install node-xmpp request express jade
+
+If on cloudno.de then also
+
 	npm install cloudnode-cli g
 
 To set the bot's password you will need to issue the following curl request and restart your application.
