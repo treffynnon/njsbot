@@ -1,7 +1,6 @@
 // npm install request node-xmpp express nodester-api
 
 const config = require('./config.js').settings;
-var node = require('nodester-api').nodester;
 var express = require('express');
 var app = express.createServer();
 app.configure(function(){
