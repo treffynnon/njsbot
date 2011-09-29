@@ -20,6 +20,7 @@ app.get('/', function(req, res){
 
 app.listen(3000);
 
+execute_bot();
 
 function execute_bot() {
     /**
