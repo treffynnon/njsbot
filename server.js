@@ -18,21 +18,6 @@ app.get('/', function(req, res){
   res.render('index.jade', data);
 });
 
-app.get('/setup-bot/:cu/:cp/:password', function(req, res) {
-  var message_body = '';
-  var nodeapi = new node(req.params.cu, req.params.cp, 'api.cloudno.de', true);
-  nodeapi.app_info('njsbot', function (err, data, original) {
-    if(!err) {
-      config.client.password = req.params.password;
-      execute_bot();
-      message_body = 'Bot password updated.';
-    } else {
-      message_body = 'Authentication failure.';
-    }
-    res.send(message_body);
-  });
-});
-
 app.listen(3000);
 
 
