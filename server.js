@@ -232,6 +232,12 @@ function execute_bot() {
 
     conn.on('online', function() {
         set_status_message(config.status_message);
+
+        // send whitespace to keep the connection alive
+        // and prevent timeouts
+        setInterval(function() {
+            conn.send(' ');
+        }, 30000);
     });
 
     conn.on('error', function(stanza) {
