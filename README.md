@@ -1,4 +1,4 @@
-A demo Node.js Google Talk Bot   [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=treffynnon&url=https://github.com/treffynnon/njsbot&title=njsbot&language=&tags=github&category=software)
+A demo Node.js Google Talk Bot   [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/1146002/)
 ==============================
 The bot is documented at [njsbot.simonholywell.com](http://njsbot.simonholywell.com "njsbot.simonholywell.com").
 
